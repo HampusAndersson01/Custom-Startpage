@@ -11,10 +11,12 @@ import {
   FaFacebook,
   FaInstagram,
   FaAmazon,
+  FaStackOverflow,
 } from "react-icons/fa";
 
 import { RiNetflixFill } from "react-icons/ri";
 import { CiTwitter } from "react-icons/ci";
+import { SiVercel, SiNamecheap } from "react-icons/si";
 
 import viaplayIcon from "../assets/images/viaplay.svg";
 import svtPlayIcon from "../assets/images/svt_play.svg";
@@ -26,6 +28,7 @@ import aftonbladetIcon from "../assets/images/Aftonbladet.png";
 import f1Icon from "../assets/images/F1.svg";
 import fplIcon from "../assets/images/FPL.svg";
 import flashScoreIcon from "../assets/images/Flashscore.png";
+import HampusAnderssonIcon from "../assets/images/HampusAndersson.png";
 
 const Links: React.FC = () => {
   const socialMediaLinks = [
@@ -34,12 +37,6 @@ const Links: React.FC = () => {
       title: "LinkedIn",
       icon: <FaLinkedin />,
       color: "#0077b5",
-    },
-    {
-      url: "https://github.com/HampusAndersson01",
-      title: "GitHub",
-      icon: <FaGithub />,
-      color: "#24292e",
     },
     {
       url: "https://twitter.com/",
@@ -137,6 +134,12 @@ const Links: React.FC = () => {
       icon: <FaAmazon />,
       color: "#ff9900",
     },
+    {
+      url: "https://hampusandersson.dev/",
+      title: "Portfolio",
+      icon: <img src={HampusAnderssonIcon} alt="Hampus Andersson" />,
+      color: "#f0f0f0",
+    },
   ];
   const sportsLinks = [
     {
@@ -159,6 +162,33 @@ const Links: React.FC = () => {
     },
   ];
 
+  const developerLinks = [
+    {
+      url: "https://ap.www.namecheap.com/dashboard",
+      title: "Namecheap",
+      icon: <SiNamecheap />,
+      color: "#ea6122",
+    },
+    {
+      url: "https://vercel.com/",
+      title: "Vercel",
+      icon: <SiVercel />,
+      color: "#fff",
+    },
+    {
+      url: "https://github.com/HampusAndersson01",
+      title: "GitHub",
+      icon: <FaGithub />,
+      color: "#24292e",
+    },
+    {
+      url: "https://stackoverflow.com/",
+      title: "Stack Overflow",
+      icon: <FaStackOverflow />,
+      color: "#f48024",
+    },
+  ];
+
   return (
     <div className="container">
       <LinksSection title="Social Media" links={socialMediaLinks} />
@@ -167,6 +197,7 @@ const Links: React.FC = () => {
       <LinksSection title="Home" links={homeLinks} />
       <LinksSection title="News" links={newsLinks} />
       <LinksSection title="Sports" links={sportsLinks} />
+      <LinksSection title="Developer" links={developerLinks} />
     </div>
   );
 };

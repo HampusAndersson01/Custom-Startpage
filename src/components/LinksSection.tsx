@@ -12,13 +12,16 @@ interface LinksSectionProps {
 }
 
 const LinksSection: React.FC<LinksSectionProps> = ({ title, links }) => {
+  // Sort the links by color
+  const sortedLinks = [...links].sort((a, b) => a.color.localeCompare(b.color));
+
   const sectionClassName = title.toLowerCase().replace(/\s+/g, "-");
 
   return (
     <div className={`section ${sectionClassName}-section`}>
       <h3>{title}</h3>
       <div className="link-container">
-        {links.map((link, index) => (
+        {sortedLinks.map((link, index) => (
           <Link key={index} {...link} />
         ))}
       </div>
