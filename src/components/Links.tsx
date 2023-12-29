@@ -29,6 +29,7 @@ import f1Icon from "../assets/images/F1.svg";
 import fplIcon from "../assets/images/FPL.svg";
 import flashScoreIcon from "../assets/images/Flashscore.png";
 import HampusAnderssonIcon from "../assets/images/HampusAndersson.png";
+import prisjaktIcon from "../assets/images/Prisjakt.png";
 
 const Links: React.FC = () => {
   const socialMediaLinks = [
@@ -139,6 +140,12 @@ const Links: React.FC = () => {
       title: "Portfolio",
       icon: <img src={HampusAnderssonIcon} alt="Hampus Andersson" />,
       color: "#f0f0f0",
+    },
+    {
+      url: "https://www.prisjakt.nu/",
+      title: "Prisjakt",
+      icon: <img src={prisjaktIcon} alt="Prisjakt" />,
+      color: "#00addb",
     },
   ];
   const sportsLinks = [
