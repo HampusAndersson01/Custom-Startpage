@@ -189,15 +189,54 @@ const Links: React.FC = () => {
     },
   ];
 
+  const sections = [
+    {
+      title: "Social Media",
+      links: socialMediaLinks,
+      color: "#444",
+    },
+    {
+      title: "Chat and Email",
+      links: chatAndEmailLinks,
+      color: "#5a3a3a",
+    },
+    {
+      title: "Entertainment",
+      links: entertainmentLinks,
+      color: "#3a4a3a",
+    },
+    {
+      title: "Home",
+      links: homeLinks,
+      color: "#4a3a4a",
+    },
+    {
+      title: "News",
+      links: newsLinks,
+      color: "#2c3e50",
+    },
+    {
+      title: "Sports",
+      links: sportsLinks,
+      color: "#2e4932",
+    },
+    {
+      title: "Developer",
+      links: developerLinks,
+      color: "#4b2e52",
+    },
+  ];
+
   return (
     <div className="container">
-      <LinksSection title="Social Media" links={socialMediaLinks} />
-      <LinksSection title="Chat and Email" links={chatAndEmailLinks} />
-      <LinksSection title="Entertainment" links={entertainmentLinks} />
-      <LinksSection title="Home" links={homeLinks} />
-      <LinksSection title="News" links={newsLinks} />
-      <LinksSection title="Sports" links={sportsLinks} />
-      <LinksSection title="Developer" links={developerLinks} />
+      {sections.map((section, index) => (
+        <LinksSection
+          key={index}
+          title={section.title}
+          links={section.links}
+          color={section.color}
+        />
+      ))}
     </div>
   );
 };
