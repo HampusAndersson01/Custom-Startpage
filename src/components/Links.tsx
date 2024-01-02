@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LinksSection from "./LinksSection";
 import "../App.css";
+import { sort } from "color-sorter";
 
 // Icons
 import {
@@ -16,7 +17,9 @@ import {
 
 import { RiNetflixFill } from "react-icons/ri";
 import { CiTwitter } from "react-icons/ci";
-import { SiVercel, SiNamecheap } from "react-icons/si";
+import { SiVercel, SiNamecheap, SiPrimevideo } from "react-icons/si";
+import { TbBrandDisney } from "react-icons/tb";
+import { MdOutlineSubtitles } from "react-icons/md";
 
 import viaplayIcon from "../assets/images/viaplay.svg";
 import svtPlayIcon from "../assets/images/svt_play.svg";
@@ -32,6 +35,19 @@ import HampusAnderssonIcon from "../assets/images/HampusAndersson.png";
 import prisjaktIcon from "../assets/images/Prisjakt.png";
 
 const Links: React.FC = () => {
+  // Get showTitles from localStorage if it exists, otherwise set it to true
+  const [showTitles, setShowTitles] = useState<boolean>(
+    JSON.parse(localStorage.getItem("showTitles")!) ?? true
+  );
+
+  const toggleShowTitles = () => {
+    setShowTitles((prev) => !prev);
+  };
+
+  useEffect(() => {
+    localStorage.setItem("showTitles", JSON.stringify(showTitles));
+  }, [showTitles]);
+
   const socialMediaLinks = [
     {
       url: "https://www.linkedin.com/in/hampus-a-0957b9140",
@@ -57,6 +73,12 @@ const Links: React.FC = () => {
       icon: <FaFacebook />,
       color: "#1877f2",
     },
+    {
+      url: "https://hotmail.com/",
+      title: "Outlook",
+      icon: <img src={hotmailIcon} alt="Outlook" />,
+      color: "#0072c6",
+    },
   ];
 
   const newsLinks = [
@@ -74,21 +96,6 @@ const Links: React.FC = () => {
     },
   ];
 
-  const chatAndEmailLinks = [
-    {
-      url: "https://chat.openai.com/",
-      title: "OpenAI Chat",
-      icon: <img src={chatGPTIcon} alt="ChatGPT" />,
-      color: "#74aa9c",
-    },
-    {
-      url: "https://hotmail.com/",
-      title: "Outlook",
-      icon: <img src={hotmailIcon} alt="Outlook" />,
-      color: "#0072c6",
-    },
-  ];
-
   const entertainmentLinks = [
     {
       url: "https://www.twitch.tv/",
@@ -100,7 +107,7 @@ const Links: React.FC = () => {
       url: "https://www.youtube.com/",
       title: "YouTube",
       icon: <FaYoutube />,
-      color: "#c4302b",
+      color: "#cc181e	",
     },
     {
       url: "https://viaplay.com/",
@@ -119,6 +126,18 @@ const Links: React.FC = () => {
       title: "Netflix",
       icon: <RiNetflixFill />,
       color: "#e50914",
+    },
+    {
+      url: "https://www.disneyplus.com/sv-se/",
+      title: "Disney+",
+      icon: <TbBrandDisney />,
+      color: "#01147c",
+    },
+    {
+      url: "https://www.primevideo.com/",
+      title: "Prime Video",
+      icon: <SiPrimevideo />,
+      color: "#00A8E1",
     },
   ];
 
@@ -194,56 +213,89 @@ const Links: React.FC = () => {
       icon: <FaStackOverflow />,
       color: "#f48024",
     },
+    {
+      url: "https://chat.openai.com/",
+      title: "OpenAI Chat",
+      icon: <img src={chatGPTIcon} alt="ChatGPT" />,
+      color: "#74aa9c",
+    },
   ];
 
   const sections = [
     {
       title: "Social Media",
       links: socialMediaLinks,
-      color: "#444",
+      color: "#7a3333", // Dark Red for Social Media
     },
-    {
-      title: "Chat and Email",
-      links: chatAndEmailLinks,
-      color: "#5a3a3a",
-    },
+
     {
       title: "Entertainment",
       links: entertainmentLinks,
-      color: "#3a4a3a",
+      color: "#3d573d", // Dark Green for Entertainment
     },
     {
       title: "Home",
       links: homeLinks,
-      color: "#4a3a4a",
+      color: "#725272", // Dark Purple for Home
     },
     {
       title: "News",
       links: newsLinks,
-      color: "#2c3e50",
+      color: "#465363", // Dark Slate Gray for News
     },
     {
       title: "Sports",
       links: sportsLinks,
-      color: "#2e4932",
+      color: "#2a4d2a", // Dark Green for Sports
     },
     {
       title: "Developer",
       links: developerLinks,
-      color: "#4b2e52",
+      color: "#4d2b4d", // Dark Purple for Developer
     },
   ];
 
+  // Sort the sections by background color using import { sort } from "color-sorter";
+  const sortedSections = sort(sections.map((section) => section.color)).map(
+    (sortedColor) => {
+      // Find the section object based on the sorted color
+      return sections.find((section) => section.color === sortedColor) as {
+        title: string;
+        links: {
+          url: string;
+          title: string;
+          icon: React.ReactElement;
+          color: string;
+        }[];
+        color: string;
+      };
+    }
+  );
+
   return (
     <div className="container">
-      {sections.map((section, index) => (
+      {sortedSections.map((section, index) => (
         <LinksSection
           key={index}
           title={section.title}
           links={section.links}
           color={section.color}
+          showTitles={showTitles}
         />
       ))}
+      <div className="toggle-container">
+        <MdOutlineSubtitles
+          className={`toggle-icon ${showTitles ? "checked" : ""}`}
+          onClick={toggleShowTitles}
+        />
+        <input
+          type="checkbox"
+          id="toggle"
+          className="toggle"
+          checked={showTitles}
+          onChange={toggleShowTitles}
+        />
+      </div>
     </div>
   );
 };

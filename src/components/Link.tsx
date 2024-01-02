@@ -5,9 +5,10 @@ interface LinkProps {
   title: string;
   icon: React.ReactElement;
   color: string;
+  showTitle: boolean; // New prop to determine whether to show the title or not
 }
 
-const Link: React.FC<LinkProps> = ({ url, title, icon, color }) => {
+const Link: React.FC<LinkProps> = ({ url, title, icon, color, showTitle }) => {
   const iconColor = isDarkColor(color) ? "#fff" : "#000";
 
   const styledIcon = React.cloneElement(icon, { style: { color: iconColor } });
@@ -16,7 +17,7 @@ const Link: React.FC<LinkProps> = ({ url, title, icon, color }) => {
     <a href={url} rel="noopener noreferrer">
       <div className="link" style={{ backgroundColor: color }}>
         <div className="link-icon">{styledIcon}</div>
-        <span style={{ color: iconColor }}>{title}</span>
+        {showTitle && <span style={{ color: iconColor }}>{title}</span>}
       </div>
     </a>
   );
