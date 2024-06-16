@@ -17,7 +17,7 @@ import {
 
 import { RiNetflixFill } from "react-icons/ri";
 import { CiTwitter } from "react-icons/ci";
-import { SiVercel, SiNamecheap, SiPrimevideo } from "react-icons/si";
+import { SiVercel, SiNamecheap, SiPrimevideo, SiFlutter } from "react-icons/si";
 import { TbBrandDisney } from "react-icons/tb";
 import { MdOutlineSubtitles } from "react-icons/md";
 
@@ -33,6 +33,7 @@ import fplIcon from "../assets/images/FPL.svg";
 import flashScoreIcon from "../assets/images/Flashscore.png";
 import HampusAnderssonIcon from "../assets/images/HampusAndersson.png";
 import prisjaktIcon from "../assets/images/Prisjakt.png";
+import { url } from "inspector";
 
 const Links: React.FC = () => {
   // Get showTitles from localStorage if it exists, otherwise set it to true
@@ -218,6 +219,13 @@ const Links: React.FC = () => {
       title: "OpenAI Chat",
       icon: <img src={chatGPTIcon} alt="ChatGPT" />,
       color: "#74aa9c",
+    },
+    // flutterzone
+    {
+      url: "https://app.flutterflow.io/dashboard",
+      title: "FlutterFlow",
+      icon: <SiFlutter />,
+      color: "#4b3aef",
     },
   ];
 
