@@ -14,7 +14,7 @@ const Link: React.FC<LinkProps> = ({ url, title, icon, color, showTitle }) => {
   const styledIcon = React.cloneElement(icon, { style: { color: iconColor } });
 
   return (
-    <a href={url} rel="noopener noreferrer">
+    <a href={url} target="_blank" rel="noopener noreferrer">
       <div className="link" style={{ backgroundColor: color }}>
         <div className="link-icon">{styledIcon}</div>
         {showTitle && <span style={{ color: iconColor }}>{title}</span>}

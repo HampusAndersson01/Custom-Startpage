@@ -13,13 +13,25 @@ import {
   FaInstagram,
   FaAmazon,
   FaStackOverflow,
+  FaStripe,
+  FaCreditCard,
+  FaEnvelope,
+  FaUserShield,
+  FaStore,
+  FaQuestionCircle,
 } from "react-icons/fa";
 
 import { RiNetflixFill } from "react-icons/ri";
 import { CiTwitter } from "react-icons/ci";
-import { SiVercel, SiNamecheap, SiPrimevideo, SiFlutter } from "react-icons/si";
+import {
+  SiVercel,
+  SiNamecheap,
+  SiPrimevideo,
+  SiFlutter,
+  SiZoho,
+} from "react-icons/si";
 import { TbBrandDisney } from "react-icons/tb";
-import { MdOutlineSubtitles } from "react-icons/md";
+import { MdOutlineSubtitles, MdLogin, MdDashboard } from "react-icons/md";
 
 import viaplayIcon from "../assets/images/viaplay.svg";
 import svtPlayIcon from "../assets/images/svt_play.svg";
@@ -228,6 +240,57 @@ const Links: React.FC = () => {
     },
   ];
 
+  const haWebbyraLinks = [
+    {
+      url: "https://secure.zervant.com/reactDashboard",
+      title: "Zervant",
+      icon: <FaCreditCard />,
+      color: "#004080",
+    },
+    {
+      url: "https://dashboard.stripe.com/dashboard",
+      title: "Stripe",
+      icon: <FaStripe />,
+      color: "#6772e5",
+    },
+    {
+      url: "https://login.inleed.net/",
+      title: "Inleed Login",
+      icon: <MdLogin />,
+      color: "#006699",
+    },
+    {
+      url: "https://ns15.inleed.net:2222/evo/",
+      title: "Inleed Panel",
+      icon: <MdDashboard />,
+      color: "#336666",
+    },
+    {
+      url: "https://apps.kapitas.se/dashboard.php",
+      title: "Kapitas",
+      icon: <FaQuestionCircle />,
+      color: "#5a5a5a",
+    },
+    {
+      url: "https://store.zoho.eu/html/store/index.html#subscription?serviceId=1501&customId=f2257a1d8a9e2caee54575edb51feced",
+      title: "Zoho Store",
+      icon: <FaStore />,
+      color: "#da3c3c",
+    },
+    {
+      url: "https://mail.zoho.eu/zm/#",
+      title: "Zoho Mail",
+      icon: <FaEnvelope />,
+      color: "#ff5722",
+    },
+    {
+      url: "https://mailadmin.zoho.eu/cpanel/home.do",
+      title: "Zoho Admin",
+      icon: <FaUserShield />,
+      color: "#9c27b0",
+    },
+  ];
+
   const sections = [
     {
       title: "Social Media",
@@ -259,6 +322,11 @@ const Links: React.FC = () => {
       title: "Developer",
       links: developerLinks,
       color: "#4d2b4d", // Dark Purple for Developer
+    },
+    {
+      title: "HA Webbyrå",
+      links: haWebbyraLinks,
+      color: "#7c3aed", // Violet for HA Webbyrå
     },
   ];
 
