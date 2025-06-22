@@ -33,7 +33,6 @@ import fplIcon from "../assets/images/FPL.svg";
 import flashScoreIcon from "../assets/images/Flashscore.png";
 import HampusAnderssonIcon from "../assets/images/HampusAndersson.png";
 import prisjaktIcon from "../assets/images/Prisjakt.png";
-import { url } from "inspector";
 
 const Links: React.FC = () => {
   // Get showTitles from localStorage if it exists, otherwise set it to true
