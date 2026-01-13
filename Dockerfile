@@ -9,11 +9,8 @@ RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:1.25-alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
-COPY docker/entrypoint-env.sh /docker-entrypoint.d/99-env.sh
-
-RUN chmod +x /docker-entrypoint.d/99-env.sh \
-  && chown -R nginx:nginx /usr/share/nginx/html
+COPY --from=build --chown=nginx:nginx /app/build /usr/share/nginx/html
+COPY --chown=nginx:nginx docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --chown=nginx:nginx --chmod=755 docker/entrypoint-env.sh /docker-entrypoint.d/99-env.sh
 
 EXPOSE 8080
