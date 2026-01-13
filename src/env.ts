@@ -1,3 +1,5 @@
+/// <reference path="./env.d.ts" />
+
 type RuntimeEnv = {
   REACT_APP_HOME_ASSISTANT_API?: string;
   REACT_APP_ACCESS_TOKEN?: string;
