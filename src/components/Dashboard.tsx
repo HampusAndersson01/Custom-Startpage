@@ -1,6 +1,7 @@
 // src/components/Dashboard.tsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getEnv } from '../env';
 
 const Dashboard: React.FC = () => {
   const [states, setStates] = useState<any[]>([]);
@@ -8,10 +9,19 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const homeAssistantApi = getEnv('REACT_APP_HOME_ASSISTANT_API');
+      const accessToken = getEnv('REACT_APP_ACCESS_TOKEN');
+
+      if (!homeAssistantApi || !accessToken) {
+        console.warn('Missing Home Assistant env vars, skipping dashboard fetch.');
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await axios.get(`${process.env.REACT_APP_HOME_ASSISTANT_API}/api/states`, {
+        const response = await axios.get(`${homeAssistantApi}/api/states`, {
           headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_ACCESS_TOKEN}`,
+            Authorization: `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           },
         });

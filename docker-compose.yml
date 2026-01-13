@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8202:8080"
+    environment:
+      REACT_APP_HOME_ASSISTANT_API: ${REACT_APP_HOME_ASSISTANT_API:-}
+      REACT_APP_ACCESS_TOKEN: ${REACT_APP_ACCESS_TOKEN:-}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
